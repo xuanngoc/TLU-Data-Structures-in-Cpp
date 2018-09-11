@@ -1,3 +1,0 @@
-tin dai cuong	cs100	10
-lap tring huong doi tuong	cs122	0
-cs121	cs121	10
