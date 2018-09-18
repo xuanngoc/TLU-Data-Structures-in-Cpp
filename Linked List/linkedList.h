@@ -25,7 +25,6 @@ public:
 	List(char * filename){
 		head =0;
 		ifstream fin(filename);
-		cout<<"filename = "<<filename<<endl;
 		if(!fin.is_open()){
 			cout<<"File isn't exist!!!\n";
 			return;
@@ -235,22 +234,14 @@ public:
 		for(int i=1; i<pos1-1; i++){
 			p=p->next;
 		}
-		cout<<"gia tri: "<<p->data<<"\n";
-
 		Node<T> * q = head;
 		for(int i=1; i< pos2 -1 ; i++){
 			q=q->next;
 		}
-		cout<<"gia tri: "<<q->data<<"\n\n";
-
 		while(p->next != q->next->next){
-			cout<<"gia tri: "<<p->data<<"\t";
 			Node <T> *t = p;
 			t= p->next;
-			cout<<"gia tri t : "<<t->data<<"\n";
-
 			p->next = p->next->next;
-			cout<<"gia tri: "<<p->data<<"\n";
 			delete t; 
 		}
 	}
