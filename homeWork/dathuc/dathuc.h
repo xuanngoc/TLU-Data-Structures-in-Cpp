@@ -34,6 +34,53 @@ public:
 		}
 		p->heSo = val;
 	}
+	DaThuc operator + (DaThuc a)const{
+		int maxBac = a.head->bac > head->bac ? a.head->bac : head->bac;
+		int minBac = a.head->bac < head->bac ? a.head->bac : head->bac;
+		DaThuc kq(maxBac);
+		cout<<maxBac<<" "<<minBac<<endl;
+
+		if(a.head->bac == maxBac){
+			int t = maxBac;
+			Node *p = a.head;
+			Node *q = head;
+			for(int i=0; i< a.head->bac - head->bac; i++){
+				kq.setHeSo(t--, p->heSo);
+				p=p->next;
+			}
+			for(int i=0; i< minBac; i++){
+				kq.setHeSo(t--, p->heSo + q -> heSo);
+				p = p->next;
+				q = q->next;
+			}
+		}else if( head->bac == maxBac){
+			int t = maxBac;
+			Node *p = head;
+			Node * q = a.head;
+
+			for(int i=0; i<  head->bac - a.head->bac ; i++){
+				kq.setHeSo(t--, p->heSo);
+				p=p->next;
+			}
+			for(int i=0; i< minBac; i++){
+				kq.setHeSo(t--, p->heSo + q -> heSo);
+				p = p->next;
+				q = q->next;
+			}
+			
+		} else{
+			Node *p = head;
+			Node * q = a.head;
+			for(int i=0; i< minBac; i++){
+				int t = minBac;
+				kq.setHeSo(t--, p->heSo + q->heSo);
+				p=p->next;
+				q=q->next;
+			}
+			
+		}
+		return kq;
+	}
 	int Calc(int x)const{
 		int kq=0;
 		Node *p = head;
