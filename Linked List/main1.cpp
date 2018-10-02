@@ -1,33 +1,25 @@
 
-#include "linkedList.h"
+#include <iostream>
+using namespace std;
+#include "2D.h"
 
 int main(){
-	List<int> a(32007, 2);
-	a.pushBack(32);
-	a.pushBack(32011);
-	
-	a.pushBack(3);
 
-	a.pushBack(3922);
+	List2D<int> a;
+	a.Add(0, 0, 5);
+	a.print();
 	
+	a.Add(1, 0, 15);
+	//a.Add(0, 2, 550);
+	/*a.Add(1, 0, 30);
+	a.Add(1, 1, 32007);*/
+	//a.Add(1, 2, 32014);
+	//a.Add(2, 0, 30311);
+	//a.Add(2, 1, 30333);
+	//a.Add(2, 2, 33999);
+
 
 	a.print();
-
-	/*a.deleteAt(11);
-	a.print();*/
-	a.insert(100, 1);
-	a.print();
-	a.insert(32014, 7);
-	a.print();
-	a.swap(2, 1);
-	a.print();
-	a.sort();
-	a.print();
-	a.sort();
-	a.sort();
-	a.sort();
-	
-	a.print();
-		
+	//cout<<a.get(1,1)<<endl;;
 
 }

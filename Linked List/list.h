@@ -109,3 +109,15 @@ public:
 		cout<<endl;
 	}
 };
+/*Node<T> * p= head;
+		Node<T> * q = head;
+		Node<T> * temp = 0;
+		for(int i=0; i< Size(); i++){
+			p=q=head;
+			while(q->next != 0){
+				if(q->data > q->next->data){
+					temp = q-> next;
+					q-> next = q->next->next;
+				}
+			}
+		}*/

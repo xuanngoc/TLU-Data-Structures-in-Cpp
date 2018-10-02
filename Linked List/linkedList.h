@@ -25,6 +25,7 @@ public:
 	List(char * filename){
 		head =0;
 		ifstream fin(filename);
+		cout<<"filename = "<<filename<<endl;
 		if(!fin.is_open()){
 			cout<<"File isn't exist!!!\n";
 			return;
@@ -69,8 +70,10 @@ public:
 		while(p->next->next != 0){
 			p=p->next;
 		}
-		p->next=0;
-		delete p->next;
+		
+		Node<T> * q = p->next; // giu cai Node cuoi cung
+		p->next=0; //cho cai vi tri ap chot = 0
+		delete q; //xoa phan tu cuoi cung
 
 	}
 	void deleteFirst(){
@@ -234,14 +237,22 @@ public:
 		for(int i=1; i<pos1-1; i++){
 			p=p->next;
 		}
+		cout<<"gia tri: "<<p->data<<"\n";
+
 		Node<T> * q = head;
 		for(int i=1; i< pos2 -1 ; i++){
 			q=q->next;
 		}
+		cout<<"gia tri: "<<q->data<<"\n\n";
+
 		while(p->next != q->next->next){
+			cout<<"gia tri: "<<p->data<<"\t";
 			Node <T> *t = p;
 			t= p->next;
+			cout<<"gia tri t : "<<t->data<<"\n";
+
 			p->next = p->next->next;
+			cout<<"gia tri: "<<p->data<<"\n";
 			delete t; 
 		}
 	}
@@ -332,33 +343,12 @@ public:
 	bool isEmpty()const{
 		return head ==0;
 	}
-	void operator + (int const& value){
-		Node<T> * p = head;
-		while(p != 0){
-			p->data += value;
+	T &operator [](int const & index){
+		Node <T> *  p  = head;
+		for(int i=0; i<index ; i++){
 			p=p->next;
 		}
-	}
-	void operator * (int const& value){
-		Node<T> * p = head;
-		while(p != 0){
-			p->data *= value;
-			p=p->next;
-		}
-	}
-	void operator - (int const& value){
-		Node<T> * p = head;
-		while(p != 0){
-			p->data -= value;
-			p=p->next;
-		}
-	}
-	void operator / (int const& value){
-		Node<T> * p = head;
-		while(p != 0){
-			p->data /= value;
-			p=p->next;
-		}
+		return p->data;
 	}
 	void print()const{
 		Node<T> *p = head;
