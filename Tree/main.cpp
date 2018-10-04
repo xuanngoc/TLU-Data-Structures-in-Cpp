@@ -5,22 +5,20 @@ using namespace std;
 int main()
 {
 	BinaryTree<int> t;
-	t.AddChild(3);
-	t.AddChild(32007);
-	t.AddChild(32014);
-	t.AddChild(32021);
-	t.AddChild(32028);
-	t.AddChild(32162);
-	t.AddChild(32163);
-	t.AddChild(31970);
+	t.AddChild(10);
+	t.AddChild(6);
+	t.AddChild(15);
+	t.AddChild(2); 
+	t.AddChild(877);
+	t.AddChild(11);
+	t.AddChild(13);
 
 	t.InOrder();
 	t.PreOrder();
 	t.PostOrder();
-	t.print();
-	//cout<<t.Height()<<endl;
-	//t.BreadthFirst();
-	//cout<<t.Height()<<endl;;
-	//cout<<Max(2, 4)<<endl;
+	//t.printRoot();
+	//cout<<t.Height() << endl;
+	cout <<t.Max()<<endl;
+
 	return 0;
 }

@@ -4,7 +4,8 @@
 #include "queue/queue.h"
 #include "list/linkedList.h"
 
-#define Max(a, b) (a > b ? a : b)
+#define Max1(a, b) (a > b ? a : b)
+#define Min1(a, b) (a < b ? a : b)
 
 template <class T>
 class BinaryTree
@@ -12,14 +13,26 @@ class BinaryTree
 private:
 	Node<T> * root;
 
+	T max(Node<T> * root)const
+	{
+		if(root == 0)
+		{
+			return -1;
+		}
+		T t= root -> data;
+		
+		return t = max(root->left) > t ? max(root->left) : max(root-> right) > t ? max(root-> right): t;
+	}
+	
+
 	int height(Node<T> * root)const{
 		if(root == 0){
 			return 0;
 		}
-		return 1 + Max(height(root->left), height(root -> right));
+		return  1 + Max1(height(root->left), height(root -> right));
 	}
 	int size(Node<T> * root)const{
-		if( root ==0){
+		if( root == 0){
 			return 0;
 		}
 		return 1+ size(root->left) + size(root -> right);
@@ -102,8 +115,21 @@ public:
 			}
 		}
 	}
+	void printRoot(){
+		cout<<root -> data<<endl;
+	}
+	T Max()const
+	{
+		//cout<<root -> data << endl;
+		return max(root);
+	}
+	
+	void Add(T const &val1, T const val2)
+	{
+
+	}
 	int Height()const{
-		return height(root);
+		return height(root) -1 ;
 	}
 	int Size()const{
 		return size(root);
