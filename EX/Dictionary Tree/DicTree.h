@@ -2,7 +2,8 @@
 #define DICTREE_H
 
 #include "node.h"
-#include "string.h"
+#include <string.h>
+#include <fstream>
 
 class DicTree
 {
@@ -58,15 +59,12 @@ public:
 	
 	void AddWord(const char *word, const char *ng )
 	{
-		//cout<<"\t\tnghia: "<<ng<<endl;
 		Node *p = root;
 
 		for(int i=0; i< strlen(word); i++)
 		{
 			p = AddLetter(word[i], p);
-			//cout<<p->ch<<"";
 		}
-		//cout<<"\n";
 
 		Node * pe = new Node('#', ng);
 		
@@ -74,7 +72,6 @@ public:
 		if( q == 0)
 		{
 			p->child = pe;;
-			//cout<<"1: "<<p->child -> ch<<" "<<p->child-> nghia<<endl;
 		}
 		else
 		{
@@ -86,9 +83,31 @@ public:
 			{
 				q-> next = pe;
 			}	
-			//cout<<"2: "<<p->next-> nghia<<endl;
 		}
 	}
+
+	void ReadFile(char * filename){
+		ifstream fin(filename);
+		if( ! fin.is_open()){
+			cout<<"File isn't exist !!!\n";
+			return ;
+		}
+		while( ! fin.eof()){
+			char *ta = new char[10];
+			char *tv = new char[20];
+			fin >> ta;
+			char *temp = new char[10];
+			fin.getline(temp, 100);
+
+			fin.getline(tv, 100);
+			cout<<ta<<"--"<<endl;
+			cout<<tv<<"--"<<endl;
+
+			AddWord(ToUpper(ta), tv);
+		}
+		
+	}
+
 	bool Search(const char* word)const
 	{
 		Node *p= root;
@@ -96,7 +115,6 @@ public:
 		for(int i=0; i< strlen(word); i++)
 		{
 			p = SearchLetter(word[i], p);
-			//cout<<p->ch<<"  ";
 			if(p ==0)
 			{
 				return 0;
@@ -126,7 +144,6 @@ public:
 		Node * q = p -> child;
 		while( q != 0)
 		{
-			cout<<q->ch<<"\n\t";
 			if( q -> ch == '#'){
 				return q->nghia;
 			}
